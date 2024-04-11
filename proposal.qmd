@@ -42,6 +42,9 @@ Questions:
 
 I hope to answer each of these questions through examining the correlation between seat belt usage rates and variables such as speed limits, minimum drinking age laws, income levels, and enforcement strategies, to gain insights into the multifaceted determinants of seat belt usage behavior. As well as for the first one looking at fatalities per million traffic miles and enforcement of seat belt laws.
 
+**Interactive Visualization:**
+An interactive and animated spatio-temporal visualization will be developed using tools such as ggplot2, plotly, and/or Shiny. The visualization will allow users to explore the relationship between seat belt laws, traffic fatalities, and seat belt usage rates over time and across different states.
+
 ## **Plan:**
 
 **Project Proposal:** A detailed project proposal will be developed outlining the research questions, objectives, methodology, and expected outcomes. The proposal will also include a plan for data collection, analysis, and reporting.
@@ -69,6 +72,9 @@ I hope to answer each of these questions through examining the correlation betwe
 **Peer Code Review:** A peer code review will be conducted to ensure code quality, readability, and reproducibility. Feedback will be used to improve the codebase.
 
 **Continued Work:** Work on the project will continue, refining analysis methods and interpreting results. Any necessary adjustments to the code will be made based on feedback.
+
+**Interactive Visualization:**
+Work on an interactive and animated spatio-temporal visualization will be developed using tools such as ggplot2, plotly, and/or Shiny. The visualization will allow users to explore the relationship between seat belt laws, traffic fatalities, and seat belt usage rates over time and across different states.
 
 **Week 5 of Project (Week 13): Project Presentation**
 
