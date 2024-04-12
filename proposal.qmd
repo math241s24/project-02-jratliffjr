@@ -28,7 +28,7 @@ The **`USSeatBelts`** dataset provides comprehensive information on traffic fata
 
 ## Reason for Choosing this Dataset
 
-I am interested in transportation policy as well as how it intersects with public health/safety. My primary goal is to investigate the impact of mandatory seat belt laws on traffic safety outcomes, specifically focusing on traffic fatalities and seat belt usage rates. This research is motivated by the importance of understanding the effectiveness of policy interventions aimed at improving road safety and reducing the number of fatalities on US roads. By analyzing the **`USSeatBelts`** dataset, which contains balanced panel data for the years 1983–1997 from 50 US states plus the District of Columbia, we aim to provide empirical evidence on the relationship between seat belt laws and traffic safety outcomes.
+I am interested in transportation policy as well as how it intersects with public health/safety. My primary goal is to investigate the impact of mandatory seat belt laws on traffic safety outcomes, specifically focusing on traffic fatalities and seat belt usage rates. This research is motivated by the importance of understanding the effectiveness of policy interventions aimed at improving road safety and reducing the number of fatalities on US roads. By analyzing the **`USSeatBelts`** dataset, which contains balanced panel data for the years 1983--1997 from 50 US states plus the District of Columbia, we aim to provide empirical evidence on the relationship between seat belt laws and traffic safety outcomes.
 
 ## Questions and Analysis Plan
 
@@ -42,8 +42,7 @@ Questions:
 
 I hope to answer each of these questions through examining the correlation between seat belt usage rates and variables such as speed limits, minimum drinking age laws, income levels, and enforcement strategies, to gain insights into the multifaceted determinants of seat belt usage behavior. As well as for the first one looking at fatalities per million traffic miles and enforcement of seat belt laws.
 
-**Interactive Visualization:**
-An interactive and animated spatio-temporal visualization will be developed using tools such as ggplot2, plotly, and/or Shiny. The visualization will allow users to explore the relationship between seat belt laws, traffic fatalities, and seat belt usage rates over time and across different states.
+**Interactive Visualization:** An interactive and animated spatio-temporal visualization will be developed using tools such as ggplot2, plotly, and/or Shiny. The visualization will allow users to explore the relationship between seat belt laws, traffic fatalities, and seat belt usage rates over time and across different states.
 
 ## **Plan:**
 
@@ -73,8 +72,7 @@ An interactive and animated spatio-temporal visualization will be developed usin
 
 **Continued Work:** Work on the project will continue, refining analysis methods and interpreting results. Any necessary adjustments to the code will be made based on feedback.
 
-**Interactive Visualization:**
-Work on an interactive and animated spatio-temporal visualization will be developed using tools such as ggplot2, plotly, and/or Shiny. The visualization will allow users to explore the relationship between seat belt laws, traffic fatalities, and seat belt usage rates over time and across different states.
+**Interactive Visualization:** Work on an interactive and animated spatio-temporal visualization will be developed using tools such as ggplot2, plotly, and/or Shiny. The visualization will allow users to explore the relationship between seat belt laws, traffic fatalities, and seat belt usage rates over time and across different states.
 
 **Week 5 of Project (Week 13): Project Presentation**
 

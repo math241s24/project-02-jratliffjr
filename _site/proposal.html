@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,8 +94,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -100,9 +108,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Project 2</span>
     </a>
@@ -114,32 +122,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Project</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Project</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./proposal.html" rel="" target="" aria-current="page">
- <span class="menu-text">Proposal</span></a>
+    <a class="nav-link active" href="./proposal.html" aria-current="page"> 
+<span class="menu-text">Proposal</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./presentation.html" rel="" target="">
- <span class="menu-text">Presentation</span></a>
+    <a class="nav-link" href="./presentation.html"> 
+<span class="menu-text">Presentation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/math241s24/project-02" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/math241s24/project-02"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -155,6 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#dataset" id="toc-dataset" class="nav-link active" data-scroll-target="#dataset">Dataset</a></li>
   <li><a href="#reason-for-choosing-this-dataset" id="toc-reason-for-choosing-this-dataset" class="nav-link" data-scroll-target="#reason-for-choosing-this-dataset">Reason for Choosing this Dataset</a></li>
   <li><a href="#questions-and-analysis-plan" id="toc-questions-and-analysis-plan" class="nav-link" data-scroll-target="#questions-and-analysis-plan">Questions and Analysis Plan</a></li>
+  <li><a href="#plan" id="toc-plan" class="nav-link" data-scroll-target="#plan"><strong>Plan:</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -183,22 +192,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
+
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="dataset" class="level2">
 <h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read data </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'AER' was built under R version 4.2.3</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: car</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: carData</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'car'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    recode</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    some</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: lmtest</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: zoo</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'zoo'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: sandwich</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'sandwich' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: survival</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"USSeatBelts"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <strong><code>USSeatBelts</code></strong> dataset provides comprehensive information on traffic fatalities, seat belt usage rates, and various other factors across different US states over a 15-year period. It includes variables such as state, year, miles traveled, fatalities per million traffic miles, seat belt usage rates, speed limits, minimum drinking age laws, income levels, and enforcement strategies. The dataset dimensions consist of 765 observations and 12 variables. I chose this dataset because it provides a rich source of data to analyze the impact of seat belt laws on traffic safety outcomes, taking into account state-level variations and controlling for potential confounding factors.</p>
 </section>
 <section id="reason-for-choosing-this-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="reason-for-choosing-this-dataset">Reason for Choosing this Dataset</h2>
+<p>I am interested in transportation policy as well as how it intersects with public health/safety. My primary goal is to investigate the impact of mandatory seat belt laws on traffic safety outcomes, specifically focusing on traffic fatalities and seat belt usage rates. This research is motivated by the importance of understanding the effectiveness of policy interventions aimed at improving road safety and reducing the number of fatalities on US roads. By analyzing the <strong><code>USSeatBelts</code></strong> dataset, which contains balanced panel data for the years 1983–1997 from 50 US states plus the District of Columbia, we aim to provide empirical evidence on the relationship between seat belt laws and traffic safety outcomes.</p>
 </section>
 <section id="questions-and-analysis-plan" class="level2">
 <h2 class="anchored" data-anchor-id="questions-and-analysis-plan">Questions and Analysis Plan</h2>
+<p><strong>High-Level Goal:</strong> To analyze the effects of mandatory seat belt laws on traffic fatalities and seat belt usage rates in the United States, using the <strong><code>USSeatBelts</code></strong> dataset.</p>
+<p>Questions:</p>
+<ol type="1">
+<li><p>How do mandatory seat belt laws impact traffic fatalities across different US states over time? This research question could involve analyzing the relationship between the presence and enforcement of seat belt laws and the number of fatalities per million traffic miles, considering variations between states and changes over the years.</p></li>
+<li><p>What factors influence seat belt usage rates in the United States, and how do these factors interact with one another?</p></li>
+</ol>
+<p>I hope to answer each of these questions through examining the correlation between seat belt usage rates and variables such as speed limits, minimum drinking age laws, income levels, and enforcement strategies, to gain insights into the multifaceted determinants of seat belt usage behavior. As well as for the first one looking at fatalities per million traffic miles and enforcement of seat belt laws.</p>
+<p><strong>Interactive Visualization:</strong> An interactive and animated spatio-temporal visualization will be developed using tools such as ggplot2, plotly, and/or Shiny. The visualization will allow users to explore the relationship between seat belt laws, traffic fatalities, and seat belt usage rates over time and across different states.</p>
+</section>
+<section id="plan" class="level2">
+<h2 class="anchored" data-anchor-id="plan"><strong>Plan:</strong></h2>
+<p><strong>Project Proposal:</strong> A detailed project proposal will be developed outlining the research questions, objectives, methodology, and expected outcomes. The proposal will also include a plan for data collection, analysis, and reporting.</p>
+<p><strong>Repository Structure:</strong> A GitHub repository will be set up for the project to facilitate collaboration and version control. The repository will include folders for documentation, data, code, and outputs.</p>
+<p><strong>Week 2 of Project (Week 10): Finalize Proposal and Peer Review</strong></p>
+<p><strong>Finalized Proposal:</strong> The project proposal will be finalized based on feedback. The proposal will be refined to ensure clarity, coherence, and alignment with project objectives.</p>
+<p><strong>Peer Review:</strong> A peer review of project proposals from other teams will be conducted. Feedback will be provided on the clarity of objectives, feasibility of the research plan, and potential improvements.</p>
+<p><strong>Submission:</strong> The updated version of the project proposal will be submitted, incorporating any revisions based on peer feedback.</p>
+<p><strong>Final Project:</strong></p>
+<p><strong>Week 3 of Project (Week 11): Project Development</strong></p>
+<p><strong>Continued Work:</strong> Work will continue on the project, focusing on data collection, cleaning, and analysis. Tasks will be managed according to the project plan.</p>
+<p><strong>Incorporate Feedback:</strong> Feedback from the proposal phase will be incorporated into the project development process to ensure alignment with project goals and objectives.</p>
+<p><strong>Week 4 of Project (Week 12): Code Review</strong></p>
+<p><strong>Peer Code Review:</strong> A peer code review will be conducted to ensure code quality, readability, and reproducibility. Feedback will be used to improve the codebase.</p>
+<p><strong>Continued Work:</strong> Work on the project will continue, refining analysis methods and interpreting results. Any necessary adjustments to the code will be made based on feedback.</p>
+<p><strong>Interactive Visualization:</strong> Work on an interactive and animated spatio-temporal visualization will be developed using tools such as ggplot2, plotly, and/or Shiny. The visualization will allow users to explore the relationship between seat belt laws, traffic fatalities, and seat belt usage rates over time and across different states.</p>
+<p><strong>Week 5 of Project (Week 13): Project Presentation</strong></p>
+<p><strong>Project Presentation:</strong> The project findings, methodology, and conclusions will be presented. The presentation will include visualizations, key insights, and recommendations based on the analysis.</p>
+<p><strong>Finalization:</strong> After the presentation, project documentation will be finalized, including the report, code, and any supplementary materials. The completed project will be submitted for evaluation.</p>
 
 
 </section>
@@ -283,10 +375,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -296,8 +387,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -310,6 +410,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -353,6 +572,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -378,6 +598,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -438,6 +684,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
