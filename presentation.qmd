@@ -1,5 +1,5 @@
 ---
-title: "Project title"
+title: "Buckle-Up: Car Accident Data in Relation to Vehical Accidents/Deaths"
 subtitle: "Project 2"
 author: "Team"
 title-slide-attributes:
@@ -15,6 +15,10 @@ execute:
 #| include: false
 
 library(tidyverse)
+library(ggplot2)
+library(plotly)
+library(shiny)
+library(AER)
 ```
 
 ```{r}
@@ -35,3 +39,158 @@ knitr::opts_chunk$set(
 #| label: load-data
 #| include: false
 ```
+
+# Data Set Overview
+
+```{r}
+library(AER)
+data("USSeatBelts")
+USSeatBelts <- na.omit(USSeatBelts)
+```
+
+Analyzing the effects of mandatory seat belt laws on traffic fatalities and seat belt usage rates in the United States from 1983-1997.
+
+Enforcement is Measured through 3 variables:
+
+\- Primary: allow law enforcement officers to stop vehicles if a driver or passenger is not wearing a seat belt. 
+
+\- No
+
+\- Secondary Enforcement: laws only allow police officers to issue tickets for seat belt violations if drivers have been pulled over for some other offense.
+
+# Research Question
+
+1.  How do mandatory seat belt laws impact traffic fatalities across different US states over time? This research question could involve analyzing the relationship between the presence and enforcement of seat belt laws and the number of fatalities per million traffic miles, considering variations between states and changes over the years.
+
+2.  What factors influence seat belt usage rates in the United States, and how do these factors interact with one another?
+
+------------------------------------------------------------------------
+
+# Shiny App and Visualization Pt. 1
+
+```{r}
+ui <- navbarPage(
+  title = "Seatbelt Usage by State",
+  tabPanel(
+    title = "All States",
+    fluidRow(
+      column(
+        width = 12,
+        plotlyOutput(outputId = "all_states_plot")
+      )
+    )
+  ),
+  tabPanel(
+    title = "State Breakdown",
+    fluidRow(
+      column(
+        width = 2,
+        selectInput(inputId = "state_select", label = "Select State", 
+                    choices = unique(USSeatBelts$state))
+      ),
+      column(
+        width = 10,
+        plotlyOutput(outputId = "plot")
+      )
+    )
+  )
+)
+
+
+server <- function(input, output, session) {
+  filtered_data <- reactive({
+    filter(USSeatBelts, state == input$state_select)
+  })
+  output$plot <- renderPlotly({
+    p <- ggplot(data = filtered_data(), aes(x = year, y = seatbelt, color = enforce, text = paste("State: ", input$state_select))) +
+      geom_point() +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+      labs(title = paste("Seatbelt Usage in", input$state_select))
+    ggplotly(p) %>%
+      layout(margin = list(l = 50, r = 50, b = 100, t = 100))
+  })
+  
+  output$all_states_plot <- renderPlotly({
+    p <- ggplot(data = USSeatBelts, aes(x = year, y = seatbelt, color = enforce, text = paste("State: ", state))) +
+      geom_point() +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+      labs(title = "Seatbelt Usage Across All States")
+    ggplotly(p) %>%
+      layout(margin = list(l = 50, r = 50, b = 100, t = 100))
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+# Shiny App and Visualization Pt. 2
+
+```{r}
+USSeatBelts$year <- as.numeric(as.character(USSeatBelts$year))
+
+ui <- fluidPage(
+  titlePanel("Impact of Seat Belt Laws on Traffic Fatalities"),
+  tabsetPanel(
+    tabPanel("All States",
+             sidebarLayout(
+               sidebarPanel(
+                 sliderInput("years_all", "Select Years:",
+                             min = min(USSeatBelts$year),
+                             max = max(USSeatBelts$year),
+                             value = c(min(USSeatBelts$year), max(USSeatBelts$year)))
+               ),
+               mainPanel(
+                 plotOutput("fatalitiesPlot_all")
+               )
+             )
+    ),
+    tabPanel("State Breakdown",
+             sidebarLayout(
+               sidebarPanel(
+                 selectInput("state", "Select State:",
+                             choices = unique(USSeatBelts$state),
+                             selected = unique(USSeatBelts$state)[1]),
+                 sliderInput("years", "Select Years:",
+                             min = min(USSeatBelts$year),
+                             max = max(USSeatBelts$year),
+                             value = c(min(USSeatBelts$year), max(USSeatBelts$year)))
+               ),
+               mainPanel(
+                 plotOutput("fatalitiesPlot")
+               )
+             )
+    )
+  )
+)
+
+server <- function(input, output) {
+  
+  output$fatalitiesPlot <- renderPlot({
+    selected_data <- USSeatBelts[USSeatBelts$state == input$state & 
+                                   USSeatBelts$year >= input$years[1] & 
+                                   USSeatBelts$year <= input$years[2], ]
+    plot(selected_data$year, selected_data$fatalities, 
+         xlab = "Year", ylab = "Fatalities",
+         main = paste("Traffic Fatalities in", input$state, "Over Time"))
+    lines(selected_data$year, selected_data$fatalities, col = "blue")
+  })
+  
+  output$fatalitiesPlot_all <- renderPlot({
+    mean_data <- aggregate(fatalities ~ year, data = USSeatBelts, FUN = mean)
+    plot(mean_data$year, mean_data$fatalities, 
+         xlab = "Year", ylab = "Mean Fatalities",
+         main = "Mean Traffic Fatalities Across All States Over Time")
+    lines(mean_data$year, mean_data$fatalities, col = "blue")
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+# Data Analysis
+
+The data shows strong evidence that the implication as well as enforcement of seat belt laws has been an effective way to increase fatalities as well as seat belt use.
+
+What struck me was just how rapid seat belt use and enforcement grew over such a short time.
+
+# Thank you for Listening

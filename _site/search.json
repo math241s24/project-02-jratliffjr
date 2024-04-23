@@ -4,35 +4,35 @@
     "href": "proposal.html",
     "title": "Project 2",
     "section": "",
-    "text": "library(tidyverse)"
+    "text": "library(tidyverse)\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(readr)"
   },
   {
     "objectID": "proposal.html#dataset",
     "href": "proposal.html#dataset",
     "title": "Project 2",
     "section": "Dataset",
-    "text": "Dataset\n\n## read data"
+    "text": "Dataset\n\nlibrary(AER)\n\nLoading required package: car\n\n\nLoading required package: carData\n\n\n\nAttaching package: 'car'\n\n\nThe following object is masked from 'package:dplyr':\n\n    recode\n\n\nThe following object is masked from 'package:purrr':\n\n    some\n\n\nLoading required package: lmtest\n\n\nLoading required package: zoo\n\n\n\nAttaching package: 'zoo'\n\n\nThe following objects are masked from 'package:base':\n\n    as.Date, as.Date.numeric\n\n\nLoading required package: sandwich\n\n\nLoading required package: survival\n\ndata(\"USSeatBelts\")\n\nThe USSeatBelts dataset provides comprehensive information on traffic fatalities, seat belt usage rates, and various other factors across different US states over a 15-year period. It includes variables such as state, year, miles traveled, fatalities per million traffic miles, seat belt usage rates, speed limits, minimum drinking age laws, income levels, and enforcement strategies. The dataset dimensions consist of 765 observations and 12 variables. I chose this dataset because it provides a rich source of data to analyze the impact of seat belt laws on traffic safety outcomes, taking into account state-level variations and controlling for potential confounding factors."
   },
   {
     "objectID": "proposal.html#reason-for-choosing-this-dataset",
     "href": "proposal.html#reason-for-choosing-this-dataset",
     "title": "Project 2",
     "section": "Reason for Choosing this Dataset",
-    "text": "Reason for Choosing this Dataset"
+    "text": "Reason for Choosing this Dataset\nI am interested in transportation policy as well as how it intersects with public health/safety. My primary goal is to investigate the impact of mandatory seat belt laws on traffic safety outcomes, specifically focusing on traffic fatalities and seat belt usage rates. This research is motivated by the importance of understanding the effectiveness of policy interventions aimed at improving road safety and reducing the number of fatalities on US roads. By analyzing the USSeatBelts dataset, which contains balanced panel data for the years 1983–1997 from 50 US states plus the District of Columbia, we aim to provide empirical evidence on the relationship between seat belt laws and traffic safety outcomes."
   },
   {
     "objectID": "proposal.html#questions-and-analysis-plan",
     "href": "proposal.html#questions-and-analysis-plan",
     "title": "Project 2",
     "section": "Questions and Analysis Plan",
-    "text": "Questions and Analysis Plan"
+    "text": "Questions and Analysis Plan\nHigh-Level Goal: To analyze the effects of mandatory seat belt laws on traffic fatalities and seat belt usage rates in the United States, using the USSeatBelts dataset.\nQuestions:\n\nHow do mandatory seat belt laws impact traffic fatalities across different US states over time? This research question could involve analyzing the relationship between the presence and enforcement of seat belt laws and the number of fatalities per million traffic miles, considering variations between states and changes over the years.\nWhat factors influence seat belt usage rates in the United States, and how do these factors interact with one another?\n\nI hope to answer each of these questions through examining the correlation between seat belt usage rates and variables such as speed limits, minimum drinking age laws, income levels, and enforcement strategies, to gain insights into the multifaceted determinants of seat belt usage behavior. As well as for the first one looking at fatalities per million traffic miles and enforcement of seat belt laws.\nInteractive Visualization: An interactive and animated spatio-temporal visualization will be developed using tools such as ggplot2, plotly, and/or Shiny. The visualization will allow users to explore the relationship between seat belt laws, traffic fatalities, and seat belt usage rates over time and across different states."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "Your project title",
+    "title": "Buckle-Up: Car Accident Data in Relation to Vehical Accidents/Deaths",
     "section": "",
-    "text": "This project was developed by XX. For MATH/STAT241 at Reed College. The team is comprised of the following team members."
+    "text": "This project was developed by Jefferson Ratliff For MATH/STAT241 at Reed College."
   },
   {
     "objectID": "index.html",
@@ -47,5 +47,12 @@
     "title": "",
     "section": "Introduction",
     "text": "Introduction"
+  },
+  {
+    "objectID": "proposal.html#plan",
+    "href": "proposal.html#plan",
+    "title": "Project 2",
+    "section": "Plan:",
+    "text": "Plan:\nProject Proposal: A detailed project proposal will be developed outlining the research questions, objectives, methodology, and expected outcomes. The proposal will also include a plan for data collection, analysis, and reporting.\nRepository Structure: A GitHub repository will be set up for the project to facilitate collaboration and version control. The repository will include folders for documentation, data, code, and outputs.\nWeek 2 of Project (Week 10): Finalize Proposal and Peer Review\nFinalized Proposal: The project proposal will be finalized based on feedback. The proposal will be refined to ensure clarity, coherence, and alignment with project objectives.\nPeer Review: A peer review of project proposals from other teams will be conducted. Feedback will be provided on the clarity of objectives, feasibility of the research plan, and potential improvements.\nSubmission: The updated version of the project proposal will be submitted, incorporating any revisions based on peer feedback.\nFinal Project:\nWeek 3 of Project (Week 11): Project Development\nContinued Work: Work will continue on the project, focusing on data collection, cleaning, and analysis. Tasks will be managed according to the project plan.\nIncorporate Feedback: Feedback from the proposal phase will be incorporated into the project development process to ensure alignment with project goals and objectives.\nWeek 4 of Project (Week 12): Code Review\nPeer Code Review: A peer code review will be conducted to ensure code quality, readability, and reproducibility. Feedback will be used to improve the codebase.\nContinued Work: Work on the project will continue, refining analysis methods and interpreting results. Any necessary adjustments to the code will be made based on feedback.\nInteractive Visualization: Work on an interactive and animated spatio-temporal visualization will be developed using tools such as ggplot2, plotly, and/or Shiny. The visualization will allow users to explore the relationship between seat belt laws, traffic fatalities, and seat belt usage rates over time and across different states.\nWeek 5 of Project (Week 13): Project Presentation\nProject Presentation: The project findings, methodology, and conclusions will be presented. The presentation will include visualizations, key insights, and recommendations based on the analysis.\nFinalization: After the presentation, project documentation will be finalized, including the report, code, and any supplementary materials. The completed project will be submitted for evaluation."
   }
 ]
