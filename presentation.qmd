@@ -1,16 +1,17 @@
 ---
 title: "Buckle-Up: Car Accident Data in Relation to Vehical Accidents/Deaths"
 subtitle: "Project 2"
-author: "Team"
+author: "Jefferson Ratliff"
 title-slide-attributes:
   data-slide-number: none
 format: revealjs
 editor: visual
 execute:
   echo: false
+runtime: shiny
 ---
 
-```{r}
+```{r, include=FALSE}
 #| label: load-packages
 #| include: false
 
@@ -19,9 +20,7 @@ library(ggplot2)
 library(plotly)
 library(shiny)
 library(AER)
-```
 
-```{r}
 #| label: setup
 #| include: false
 
@@ -33,14 +32,17 @@ knitr::opts_chunk$set(
   fig.asp = 0.618, 
   out.width = "70%"
   )
-```
 
-```{r}
 #| label: load-data
 #| include: false
 ```
 
-# Data Set Overview
+## Introduction
+
+-   **Objective**: Analyzing the effects of mandatory seat belt laws on traffic fatalities and seat belt usage rates in the United States from 1983-1997.
+-   **Enforcement Variables**:
+    -   Primary Enforcement: Allows law enforcement officers to stop vehicles if a driver or passenger is not wearing a seat belt.
+    -   Secondary Enforcement: Laws only allow police officers to issue tickets for seat belt violations if drivers have been pulled over for some other offense.
 
 ```{r}
 library(AER)
@@ -48,25 +50,23 @@ data("USSeatBelts")
 USSeatBelts <- na.omit(USSeatBelts)
 ```
 
-Analyzing the effects of mandatory seat belt laws on traffic fatalities and seat belt usage rates in the United States from 1983-1997.
+------------------------------------------------------------------------
 
-Enforcement is Measured through 3 variables:
+## Research Questions
 
-\- Primary: allow law enforcement officers to stop vehicles if a driver or passenger is not wearing a seat belt. 
-
-\- No
-
-\- Secondary Enforcement: laws only allow police officers to issue tickets for seat belt violations if drivers have been pulled over for some other offense.
-
-# Research Question
-
-1.  How do mandatory seat belt laws impact traffic fatalities across different US states over time? This research question could involve analyzing the relationship between the presence and enforcement of seat belt laws and the number of fatalities per million traffic miles, considering variations between states and changes over the years.
-
-2.  What factors influence seat belt usage rates in the United States, and how do these factors interact with one another?
+1.  **Impact of Seat Belt Laws on Traffic Fatalities**:
+    -   How do mandatory seat belt laws impact traffic fatalities across different US states over time?
+2.  **Factors Influencing Seat Belt Usage Rates**:
+    -   What factors influence seat belt usage rates in the United States, and how do these factors interact with one another?
 
 ------------------------------------------------------------------------
 
-# Shiny App and Visualization Pt. 1
+## Shiny Application 1: Seatbelt Usage by State Over Time
+
+-   **All States**:
+    -   Visualizes seatbelt usage across all states.
+-   **State Breakdown**:
+    -   Allows selection of a specific state to analyze seatbelt usage trends.
 
 ```{r}
 ui <- navbarPage(
@@ -123,7 +123,14 @@ server <- function(input, output, session) {
 shinyApp(ui = ui, server = server)
 ```
 
-# Shiny App and Visualization Pt. 2
+------------------------------------------------------------------------
+
+## Shiny Application 2: Impact of Seat Belt Laws on Traffic Fatalities
+
+-   **All States**:
+    -   Shows the mean traffic fatalities across all states over time.
+-   **State Breakdown**:
+    -   Allows selection of a specific state to analyze traffic fatalities over time.
 
 ```{r}
 USSeatBelts$year <- as.numeric(as.character(USSeatBelts$year))
@@ -187,10 +194,16 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-# Data Analysis
+------------------------------------------------------------------------
 
-The data shows strong evidence that the implication as well as enforcement of seat belt laws has been an effective way to increase fatalities as well as seat belt use.
+## Data Analysis
 
-What struck me was just how rapid seat belt use and enforcement grew over such a short time.
+-   **Key Findings**:
+    -   Strong evidence suggests that the implication and enforcement of seat belt laws have effectively increased both fatalities and seat belt usage.
+    -   Rapid growth in seat belt use and enforcement observed over a short period.
 
-# Thank you for Listening
+------------------------------------------------------------------------
+
+## Thank You!
+
+-   **Questions?**
