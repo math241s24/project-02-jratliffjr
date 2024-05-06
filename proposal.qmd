@@ -1,7 +1,7 @@
 ---
-title: "Project 2"
-subtitle: "Proposal"
-authors: ""
+title: "Buckle-Up: Car Accident Data in Relation to Vehical Accidents/Deaths"
+subtitle: "Project 2"
+authors: "Jefferson Ratliff"
 format: html
 editor: visual
 ---
@@ -28,7 +28,7 @@ The **`USSeatBelts`** dataset provides comprehensive information on traffic fata
 
 ## Reason for Choosing this Dataset
 
-I am interested in transportation policy as well as how it intersects with public health/safety. My primary goal is to investigate the impact of mandatory seat belt laws on traffic safety outcomes, specifically focusing on traffic fatalities and seat belt usage rates. This research is motivated by the importance of understanding the effectiveness of policy interventions aimed at improving road safety and reducing the number of fatalities on US roads. By analyzing the **`USSeatBelts`** dataset, which contains balanced panel data for the years 1983–1997 from 50 US states plus the District of Columbia, we aim to provide empirical evidence on the relationship between seat belt laws and traffic safety outcomes.
+I am interested in transportation policy as well as how it intersects with public health/safety. My primary goal is to investigate the impact of mandatory seat belt laws on traffic safety outcomes, specifically focusing on traffic fatalities and seat belt usage rates. This research is motivated by the importance of understanding the effectiveness of policy interventions aimed at improving road safety and reducing the number of fatalities on US roads. By analyzing the **`USSeatBelts`** dataset, which contains balanced panel data for the years 1983--1997 from 50 US states plus the District of Columbia, we aim to provide empirical evidence on the relationship between seat belt laws and traffic safety outcomes.
 
 ## Questions and Analysis Plan
 

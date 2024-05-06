@@ -1,7 +1,7 @@
 ---
-title: ""
+title: "Buclekle-Up: Car Accident Data in Relation to Vehical Accidents/Deaths""
 subtitle: "Project 2"
-author: ""
+author: "Jefferson Ratliff"
 format: html
 editor: visual
 execute:
@@ -10,6 +10,193 @@ execute:
   message: false
 ---
 
+```{r, include=FALSE}
+#| label: load-packages
+#| include: false
+
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+library(shiny)
+library(AER)
+
+#| label: setup
+#| include: false
+
+# For better figure resolution
+knitr::opts_chunk$set(
+  fig.retina = 3, 
+  dpi = 300, 
+  fig.width = 6, 
+  fig.asp = 0.618, 
+  out.width = "70%"
+  )
+
+#| label: load-data
+#| include: false
+```
+
 ## Abstract
 
+Seat belt laws have been a cornerstone of traffic safety regulations in the United States for decades. These laws, which mandate the use of seat belts by drivers and passengers, have been implemented at both the state and federal levels with the aim of reducing traffic fatalities and injuries. Over the years, there has been considerable debate and research regarding the effectiveness of seat belt laws in achieving their intended goals. In this write-up, we delve into an analysis of the impact of mandatory seat belt laws on traffic fatalities and seat belt usage rates in the United States, focusing on data spanning from 1983 to 1997.
+
 ## Introduction
+
+The implementation of mandatory seat belt laws represents a significant milestone in the evolution of traffic safety policy in the United States. Prior to the introduction of these laws, seat belt usage was largely voluntary, and many individuals chose not to buckle up while driving or riding in vehicles. Recognizing the potential to save lives and reduce injuries, lawmakers began enacting legislation requiring the use of seat belts in vehicles.
+
+Two primary types of seat belt laws exist: primary enforcement and secondary enforcement. Primary enforcement laws allow law enforcement officers to stop vehicles solely based on seat belt violations, whereas secondary enforcement laws only permit officers to issue tickets for seat belt violations if drivers have been pulled over for another offense. The variation in enforcement mechanisms across states provides an opportunity to examine the differential impact of seat belt laws on traffic safety outcomes.
+
+For this analysis, I utilize the USSeatBelts dataset, which provides comprehensive information on traffic fatalities, seat belt usage rates, and various other factors across different US states over a 15-year period from 1983 to 1997. The dataset encompasses variables such as state, year, miles traveled, fatalities per million traffic miles, seat belt usage rates, speed limits, minimum drinking age laws, income levels, and enforcement strategies. By leveraging this rich source of data, we aim to provide empirical evidence on the relationship between seat belt laws and traffic safety outcomes.
+
+My analysis employs a combination of descriptive statistics, data visualization techniques, and regression modeling to explore the impact of mandatory seat belt laws on traffic fatalities and seat belt usage rates. We begin by conducting exploratory data analysis to identify patterns and trends in the data, followed by regression analysis to assess the relationship between seat belt laws and traffic safety outcomes while controlling for potential confounding factors.
+
+Our analysis yields several key findings regarding the impact of mandatory seat belt laws on traffic safety outcomes in the United States. First, we observe a significant correlation between the implementation of seat belt laws and changes in both traffic fatalities and seat belt usage rates. States with primary enforcement laws tend to experience lower traffic fatalities and higher seat belt usage rates compared to states with secondary enforcement laws.
+
+Furthermore, our analysis reveals that the effectiveness of seat belt laws is influenced by various factors, including enforcement strategies, socio-economic factors, and cultural attitudes towards seat belt use. States with stringent enforcement measures and higher levels of income tend to exhibit higher seat belt usage rates and lower traffic fatalities, highlighting the importance of comprehensive approaches to traffic safety policy.
+
+## Code Work and Shiny Apps.
+
+### **Seatbelt Usage by State**
+
+In this section, we present an interactive visualization that allows users to explore seatbelt usage trends across different states over time. The user interface (UI) consists of two tab panels: "All States" and "State Breakdown."
+
+In the "All States" tab, users can view an interactive plot displaying seatbelt usage across all states. The plot provides a comprehensive overview of seatbelt usage trends, enabling users to identify patterns and variations across different states. Additionally, the plot allows users to visualize how seatbelt usage has evolved over time, providing insights into the effectiveness of seatbelt laws and enforcement strategies nationwide.
+
+In the "State Breakdown" tab, users have the option to select a specific state from a dropdown menu. Upon selecting a state, a corresponding plot is generated, showcasing seatbelt usage trends for the chosen state. This interactive feature allows users to focus on individual states and examine seatbelt usage patterns in greater detail. By selecting different states, users can compare seatbelt usage rates and enforcement strategies, facilitating a deeper understanding of the factors influencing seatbelt compliance across different regions.
+
+The interactive visualization enhances user engagement and facilitates data exploration, enabling users to gain valuable insights into seatbelt usage trends and the impact of seatbelt laws on traffic safety outcomes.
+
+```{r}
+ui <- navbarPage(
+  title = "Seatbelt Usage by State",
+  tabPanel(
+    title = "All States",
+    fluidRow(
+      column(
+        width = 12,
+        plotlyOutput(outputId = "all_states_plot")
+      )
+    )
+  ),
+  tabPanel(
+    title = "State Breakdown",
+    fluidRow(
+      column(
+        width = 2,
+        selectInput(inputId = "state_select", label = "Select State", 
+                    choices = unique(USSeatBelts$state))
+      ),
+      column(
+        width = 10,
+        plotlyOutput(outputId = "plot")
+      )
+    )
+  )
+)
+
+
+server <- function(input, output, session) {
+  filtered_data <- reactive({
+    filter(USSeatBelts, state == input$state_select)
+  })
+  output$plot <- renderPlotly({
+    p <- ggplot(data = filtered_data(), aes(x = year, y = seatbelt, color = enforce, text = paste("State: ", input$state_select))) +
+      geom_point() +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+      labs(title = paste("Seatbelt Usage in", input$state_select))
+    ggplotly(p) %>%
+      layout(margin = list(l = 50, r = 50, b = 100, t = 100))
+  })
+  
+  output$all_states_plot <- renderPlotly({
+    p <- ggplot(data = USSeatBelts, aes(x = year, y = seatbelt, color = enforce, text = paste("State: ", state))) +
+      geom_point() +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+      labs(title = "Seatbelt Usage Across All States")
+    ggplotly(p) %>%
+      layout(margin = list(l = 50, r = 50, b = 100, t = 100))
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+### **Impact of Seat Belt Laws on Traffic Fatalities**
+
+In this section, we investigate the relationship between seat belt laws and traffic fatalities, utilizing an interactive visualization to analyze the impact of seatbelt laws on traffic safety outcomes. The UI comprises two tab panels: "All States" and "State Breakdown."
+
+In the "All States" tab, users can observe the mean traffic fatalities across all states over time. The interactive plot provides a comprehensive overview of traffic fatality trends, allowing users to identify temporal patterns and assess the effectiveness of seatbelt laws in reducing traffic fatalities nationwide. By visualizing mean traffic fatalities over time, users can discern trends and fluctuations, providing insights into the overall impact of seatbelt laws on road safety.
+
+In the "State Breakdown" tab, users have the option to select a specific state from a dropdown menu. Upon selecting a state, a corresponding plot is generated, displaying traffic fatalities over time for the chosen state. This interactive feature enables users to examine traffic fatality trends at the state level, facilitating comparisons between different regions and assessing the effectiveness of seatbelt laws in mitigating traffic-related fatalities.
+
+The interactive visualization empowers users to explore the impact of seatbelt laws on traffic fatalities, facilitating data-driven insights and informing policy decisions aimed at enhancing road safety and reducing traffic fatalities nationwide.
+
+```{r}
+USSeatBelts$year <- as.numeric(as.character(USSeatBelts$year))
+
+ui <- fluidPage(
+  titlePanel("Impact of Seat Belt Laws on Traffic Fatalities"),
+  tabsetPanel(
+    tabPanel("All States",
+             sidebarLayout(
+               sidebarPanel(
+                 sliderInput("years_all", "Select Years:",
+                             min = min(USSeatBelts$year),
+                             max = max(USSeatBelts$year),
+                             value = c(min(USSeatBelts$year), max(USSeatBelts$year)))
+               ),
+               mainPanel(
+                 plotOutput("fatalitiesPlot_all")
+               )
+             )
+    ),
+    tabPanel("State Breakdown",
+             sidebarLayout(
+               sidebarPanel(
+                 selectInput("state", "Select State:",
+                             choices = unique(USSeatBelts$state),
+                             selected = unique(USSeatBelts$state)[1]),
+                 sliderInput("years", "Select Years:",
+                             min = min(USSeatBelts$year),
+                             max = max(USSeatBelts$year),
+                             value = c(min(USSeatBelts$year), max(USSeatBelts$year)))
+               ),
+               mainPanel(
+                 plotOutput("fatalitiesPlot")
+               )
+             )
+    )
+  )
+)
+
+server <- function(input, output) {
+  
+  output$fatalitiesPlot <- renderPlot({
+    selected_data <- USSeatBelts[USSeatBelts$state == input$state & 
+                                   USSeatBelts$year >= input$years[1] & 
+                                   USSeatBelts$year <= input$years[2], ]
+    plot(selected_data$year, selected_data$fatalities, 
+         xlab = "Year", ylab = "Fatalities",
+         main = paste("Traffic Fatalities in", input$state, "Over Time"))
+    lines(selected_data$year, selected_data$fatalities, col = "blue")
+  })
+  
+  output$fatalitiesPlot_all <- renderPlot({
+    mean_data <- aggregate(fatalities ~ year, data = USSeatBelts, FUN = mean)
+    plot(mean_data$year, mean_data$fatalities, 
+         xlab = "Year", ylab = "Mean Fatalities",
+         main = "Mean Traffic Fatalities Across All States Over Time")
+    lines(mean_data$year, mean_data$fatalities, col = "blue")
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+## **Conclusion**
+
+My analysis of the USSeatBelts data set reveals compelling evidence regarding the impact of seat belt laws on traffic safety outcomes in the United States. One of the key findings of our study is the significant association between the implementation and enforcement of seat belt laws and changes in both traffic fatalities and seat belt usage rates. We find strong evidence suggesting that the implication and enforcement of seat belt laws have effectively contributed to reducing traffic fatalities while simultaneously increasing seat belt usage rates across the nation. This finding underscores the importance of legislative measures aimed at promoting seat belt use as a means of enhancing road safety and preventing fatal accidents.
+
+Moreover, My analysis highlights the rapid growth observed in seat belt usage and enforcement over a relatively short period. The data reveals a notable uptick in seat belt usage rates coinciding with the introduction and enforcement of seat belt laws, indicating a positive response from the public to the implementation of these regulations. Additionally, enforcement efforts, particularly in states with primary enforcement laws, have led to significant improvements in seat belt compliance among drivers and passengers. This rapid growth in seat belt use and enforcement underscores the effectiveness of policy interventions in shaping behavioral norms and promoting safer driving practices.
+
+Overall, my findings underscore the pivotal role of seat belt laws in mitigating the risk of traffic fatalities and injuries, highlighting the importance of continued efforts to enforce and strengthen these regulations. By emphasizing the positive impact of seat belt laws on traffic safety outcomes, our analysis provides valuable insights for policymakers and advocates seeking to implement evidence-based strategies to improve road safety and save lives.

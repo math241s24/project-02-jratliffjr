@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "presentation.html#introduction",
+    "href": "presentation.html#introduction",
+    "title": "Buckle-Up: Car Accident Data in Relation to Vehical Accidents/Deaths",
+    "section": "Introduction",
+    "text": "Introduction\n\nObjective: Analyzing the effects of mandatory seat belt laws on traffic fatalities and seat belt usage rates in the United States from 1983-1997.\nEnforcement Variables:\n\nPrimary Enforcement: Allows law enforcement officers to stop vehicles if a driver or passenger is not wearing a seat belt.\nSecondary Enforcement: Laws only allow police officers to issue tickets for seat belt violations if drivers have been pulled over for some other offense."
+  },
+  {
+    "objectID": "presentation.html#research-questions",
+    "href": "presentation.html#research-questions",
+    "title": "Buckle-Up: Car Accident Data in Relation to Vehical Accidents/Deaths",
+    "section": "Research Questions",
+    "text": "Research Questions\n\nImpact of Seat Belt Laws on Traffic Fatalities:\n\nHow do mandatory seat belt laws impact traffic fatalities across different US states over time?\n\nFactors Influencing Seat Belt Usage Rates:\n\nWhat factors influence seat belt usage rates in the United States, and how do these factors interact with one another?"
+  },
+  {
+    "objectID": "presentation.html#shiny-application-1-seatbelt-usage-by-state-over-time",
+    "href": "presentation.html#shiny-application-1-seatbelt-usage-by-state-over-time",
+    "title": "Buckle-Up: Car Accident Data in Relation to Vehical Accidents/Deaths",
+    "section": "Shiny Application 1: Seatbelt Usage by State Over Time",
+    "text": "Shiny Application 1: Seatbelt Usage by State Over Time\n\nAll States:\n\nVisualizes seatbelt usage across all states.\n\nState Breakdown:\n\nAllows selection of a specific state to analyze seatbelt usage trends."
+  },
+  {
+    "objectID": "presentation.html#shiny-application-2-impact-of-seat-belt-laws-on-traffic-fatalities",
+    "href": "presentation.html#shiny-application-2-impact-of-seat-belt-laws-on-traffic-fatalities",
+    "title": "Buckle-Up: Car Accident Data in Relation to Vehical Accidents/Deaths",
+    "section": "Shiny Application 2: Impact of Seat Belt Laws on Traffic Fatalities",
+    "text": "Shiny Application 2: Impact of Seat Belt Laws on Traffic Fatalities\n\nAll States:\n\nShows the mean traffic fatalities across all states over time.\n\nState Breakdown:\n\nAllows selection of a specific state to analyze traffic fatalities over time."
+  },
+  {
+    "objectID": "presentation.html#data-analysis",
+    "href": "presentation.html#data-analysis",
+    "title": "Buckle-Up: Car Accident Data in Relation to Vehical Accidents/Deaths",
+    "section": "Data Analysis",
+    "text": "Data Analysis\n\nKey Findings:\n\nStrong evidence suggests that the implication and enforcement of seat belt laws have effectively increased both fatalities and seat belt usage.\nRapid growth in seat belt use and enforcement observed over a short period."
+  },
+  {
+    "objectID": "presentation.html#thank-you",
+    "href": "presentation.html#thank-you",
+    "title": "Buckle-Up: Car Accident Data in Relation to Vehical Accidents/Deaths",
+    "section": "Thank You!",
+    "text": "Thank You!\n\nQuestions?"
+  }
+]
