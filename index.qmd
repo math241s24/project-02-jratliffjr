@@ -122,7 +122,7 @@ shinyApp(ui = ui, server = server)
 
 ### **Impact of Seat Belt Laws on Traffic Fatalities**
 
-In this section, we investigate the relationship between seat belt laws and traffic fatalities, utilizing an interactive visualization to analyze the impact of seatbelt laws on traffic safety outcomes. The UI comprises two tab panels: "All States" and "State Breakdown."
+This section investigates the relationship between seat belt laws and traffic fatalities, utilizing an interactive visualization to analyze the impact of seatbelt laws on traffic safety outcomes. The UI comprises two tab panels: "All States" and "State Breakdown."
 
 In the "All States" tab, users can observe the mean traffic fatalities across all states over time. The interactive plot provides a comprehensive overview of traffic fatality trends, allowing users to identify temporal patterns and assess the effectiveness of seatbelt laws in reducing traffic fatalities nationwide. By visualizing mean traffic fatalities over time, users can discern trends and fluctuations, providing insights into the overall impact of seatbelt laws on road safety.
 
