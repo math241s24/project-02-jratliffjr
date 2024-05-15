@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Jefferson Ratliff">
 
 <title>Project 2 - Buckle-Up: Car Accident Data in Relation to Vehical Accidents/Deaths</title>
 <style>
@@ -20,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -93,11 +126,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Project</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./proposal.html"> 
+    <a class="nav-link active" href="./proposal.html" aria-current="page"> 
 <span class="menu-text">Proposal</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./presentation.html" aria-current="page"> 
+    <a class="nav-link" href="./presentation.html"> 
 <span class="menu-text">Presentation</span></a>
   </li>  
   <li class="nav-item">
@@ -127,14 +160,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions">Research Questions</a></li>
-  <li><a href="#shiny-application-1-seatbelt-usage-by-state-over-time" id="toc-shiny-application-1-seatbelt-usage-by-state-over-time" class="nav-link" data-scroll-target="#shiny-application-1-seatbelt-usage-by-state-over-time">Shiny Application 1: Seatbelt Usage by State Over Time</a></li>
-  <li><a href="#shiny-application-2-impact-of-seat-belt-laws-on-traffic-fatalities" id="toc-shiny-application-2-impact-of-seat-belt-laws-on-traffic-fatalities" class="nav-link" data-scroll-target="#shiny-application-2-impact-of-seat-belt-laws-on-traffic-fatalities">Shiny Application 2: Impact of Seat Belt Laws on Traffic Fatalities</a></li>
-  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data Analysis</a></li>
-  <li><a href="#thank-you" id="toc-thank-you" class="nav-link" data-scroll-target="#thank-you">Thank You!</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link active" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#reason-for-choosing-this-dataset" id="toc-reason-for-choosing-this-dataset" class="nav-link" data-scroll-target="#reason-for-choosing-this-dataset">Reason for Choosing this Dataset</a></li>
+  <li><a href="#questions-and-analysis-plan" id="toc-questions-and-analysis-plan" class="nav-link" data-scroll-target="#questions-and-analysis-plan">Questions and Analysis Plan</a></li>
+  <li><a href="#plan" id="toc-plan" class="nav-link" data-scroll-target="#plan"><strong>Plan:</strong></a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="presentation.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -165,129 +196,106 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<ul>
-<li><strong>Objective</strong>: Analyzing the effects of mandatory seat belt laws on traffic fatalities and seat belt usage rates in the United States from 1983-1997.</li>
-<li><strong>Enforcement Variables</strong>:
-<ul>
-<li>Primary Enforcement: Allows law enforcement officers to stop vehicles if a driver or passenger is not wearing a seat belt.</li>
-<li>Secondary Enforcement: Laws only allow police officers to issue tickets for seat belt violations if drivers have been pulled over for some other offense.</li>
-</ul></li>
-</ul>
-<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="dataset" class="level2">
+<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'AER' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: car</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: carData</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'car'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    recode</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    some</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: lmtest</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: zoo</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'zoo'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: sandwich</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'sandwich' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: survival</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"USSeatBelts"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <strong><code>USSeatBelts</code></strong> dataset provides comprehensive information on traffic fatalities, seat belt usage rates, and various other factors across different US states over a 15-year period. It includes variables such as state, year, miles traveled, fatalities per million traffic miles, seat belt usage rates, speed limits, minimum drinking age laws, income levels, and enforcement strategies. The dataset dimensions consist of 765 observations and 12 variables. I chose this dataset because it provides a rich source of data to analyze the impact of seat belt laws on traffic safety outcomes, taking into account state-level variations and controlling for potential confounding factors.</p>
 </section>
-<section id="research-questions" class="level2">
-<h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
+<section id="reason-for-choosing-this-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="reason-for-choosing-this-dataset">Reason for Choosing this Dataset</h2>
+<p>I am interested in transportation policy as well as how it intersects with public health/safety. My primary goal is to investigate the impact of mandatory seat belt laws on traffic safety outcomes, specifically focusing on traffic fatalities and seat belt usage rates. This research is motivated by the importance of understanding the effectiveness of policy interventions aimed at improving road safety and reducing the number of fatalities on US roads. By analyzing the <strong><code>USSeatBelts</code></strong> dataset, which contains balanced panel data for the years 1983–1997 from 50 US states plus the District of Columbia, we aim to provide empirical evidence on the relationship between seat belt laws and traffic safety outcomes.</p>
+</section>
+<section id="questions-and-analysis-plan" class="level2">
+<h2 class="anchored" data-anchor-id="questions-and-analysis-plan">Questions and Analysis Plan</h2>
+<p><strong>High-Level Goal:</strong> To analyze the effects of mandatory seat belt laws on traffic fatalities and seat belt usage rates in the United States, using the <strong><code>USSeatBelts</code></strong> dataset.</p>
+<p>Questions:</p>
 <ol type="1">
-<li><strong>Impact of Seat Belt Laws on Traffic Fatalities</strong>:
-<ul>
-<li>How do mandatory seat belt laws impact traffic fatalities across different US states over time?</li>
-</ul></li>
-<li><strong>Factors Influencing Seat Belt Usage Rates</strong>:
-<ul>
-<li>What factors influence seat belt usage rates in the United States, and how do these factors interact with one another?</li>
-</ul></li>
+<li><p>How do mandatory seat belt laws impact traffic fatalities across different US states over time? This research question could involve analyzing the relationship between the presence and enforcement of seat belt laws and the number of fatalities per million traffic miles, considering variations between states and changes over the years.</p></li>
+<li><p>What factors influence seat belt usage rates in the United States, and how do these factors interact with one another?</p></li>
 </ol>
-<hr>
+<p>I hope to answer each of these questions through examining the correlation between seat belt usage rates and variables such as speed limits, minimum drinking age laws, income levels, and enforcement strategies, to gain insights into the multifaceted determinants of seat belt usage behavior. As well as for the first one looking at fatalities per million traffic miles and enforcement of seat belt laws.</p>
+<p><strong>Interactive Visualization:</strong> An interactive and animated spatio-temporal visualization will be developed using tools such as ggplot2, plotly, and/or Shiny. The visualization will allow users to explore the relationship between seat belt laws, traffic fatalities, and seat belt usage rates over time and across different states.</p>
 </section>
-<section id="shiny-application-1-seatbelt-usage-by-state-over-time" class="level2">
-<h2 class="anchored" data-anchor-id="shiny-application-1-seatbelt-usage-by-state-over-time">Shiny Application 1: Seatbelt Usage by State Over Time</h2>
-<ul>
-<li><strong>All States</strong>:
-<ul>
-<li>Visualizes seatbelt usage across all states.</li>
-</ul></li>
-<li><strong>State Breakdown</strong>:
-<ul>
-<li>Allows selection of a specific state to analyze seatbelt usage trends.</li>
-</ul></li>
-</ul>
-<div class="cell">
-<div class="cell-output-display">
-<p><iframe data-deferred-src="app2ebee904e10be7a0ad927940446735d6/?w=&amp;__subapp__=1" width="100%" height="400" class="shiny-frame shiny-frame-deferred"></iframe></p>
-</div>
-</div>
-<hr>
-</section>
-<section id="shiny-application-2-impact-of-seat-belt-laws-on-traffic-fatalities" class="level2">
-<h2 class="anchored" data-anchor-id="shiny-application-2-impact-of-seat-belt-laws-on-traffic-fatalities">Shiny Application 2: Impact of Seat Belt Laws on Traffic Fatalities</h2>
-<ul>
-<li><strong>All States</strong>:
-<ul>
-<li>Shows the mean traffic fatalities across all states over time.</li>
-</ul></li>
-<li><strong>State Breakdown</strong>:
-<ul>
-<li>Allows selection of a specific state to analyze traffic fatalities over time.</li>
-</ul></li>
-</ul>
-<div class="cell">
-<div class="cell-output-display">
-<p><iframe data-deferred-src="app1529a75cf6f20d6471bd92d37ab1daeb/?w=&amp;__subapp__=1" width="100%" height="400" class="shiny-frame shiny-frame-deferred"></iframe></p>
-</div>
-</div>
-<hr>
-</section>
-<section id="data-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
-<ul>
-<li><strong>Key Findings</strong>:
-<ul>
-<li>Strong evidence suggests that the implication and enforcement of seat belt laws have effectively increased both fatalities and seat belt usage.</li>
-<li>Rapid growth in seat belt use and enforcement observed over a short period.</li>
-</ul></li>
-</ul>
-<hr>
-</section>
-<section id="thank-you" class="level2">
-<h2 class="anchored" data-anchor-id="thank-you">Thank You!</h2>
-<ul>
-<li><strong>Questions?</strong></li>
-</ul>
+<section id="plan" class="level2">
+<h2 class="anchored" data-anchor-id="plan"><strong>Plan:</strong></h2>
+<p><strong>Project Proposal:</strong> A detailed project proposal will be developed outlining the research questions, objectives, methodology, and expected outcomes. The proposal will also include a plan for data collection, analysis, and reporting.</p>
+<p><strong>Repository Structure:</strong> A GitHub repository will be set up for the project to facilitate collaboration and version control. The repository will include folders for documentation, data, code, and outputs.</p>
+<p><strong>Week 2 of Project (Week 10): Finalize Proposal and Peer Review</strong></p>
+<p><strong>Finalized Proposal:</strong> The project proposal will be finalized based on feedback. The proposal will be refined to ensure clarity, coherence, and alignment with project objectives.</p>
+<p><strong>Peer Review:</strong> A peer review of project proposals from other teams will be conducted. Feedback will be provided on the clarity of objectives, feasibility of the research plan, and potential improvements.</p>
+<p><strong>Submission:</strong> The updated version of the project proposal will be submitted, incorporating any revisions based on peer feedback.</p>
+<p><strong>Final Project:</strong></p>
+<p><strong>Week 3 of Project (Week 11): Project Development</strong></p>
+<p><strong>Continued Work:</strong> Work will continue on the project, focusing on data collection, cleaning, and analysis. Tasks will be managed according to the project plan.</p>
+<p><strong>Incorporate Feedback:</strong> Feedback from the proposal phase will be incorporated into the project development process to ensure alignment with project goals and objectives.</p>
+<p><strong>Week 4 of Project (Week 12): Code Review</strong></p>
+<p><strong>Peer Code Review:</strong> A peer code review will be conducted to ensure code quality, readability, and reproducibility. Feedback will be used to improve the codebase.</p>
+<p><strong>Continued Work:</strong> Work on the project will continue, refining analysis methods and interpreting results. Any necessary adjustments to the code will be made based on feedback.</p>
+<p><strong>Interactive Visualization:</strong> Work on an interactive and animated spatio-temporal visualization will be developed using tools such as ggplot2, plotly, and/or Shiny. The visualization will allow users to explore the relationship between seat belt laws, traffic fatalities, and seat belt usage rates over time and across different states.</p>
+<p><strong>Week 5 of Project (Week 13): Project Presentation</strong></p>
+<p><strong>Project Presentation:</strong> The project findings, methodology, and conclusions will be presented. The presentation will include visualizations, key insights, and recommendations based on the analysis.</p>
+<p><strong>Finalization:</strong> After the presentation, project documentation will be finalized, including the report, code, and any supplementary materials. The completed project will be submitted for evaluation.</p>
 
 
 </section>
 
 </main> <!-- /main -->
-
-<script>
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-  // slide changes (different for each slide format).
-  (function () {
-    // dispatch for htmlwidgets
-    function fireSlideEnter() {
-      const event = window.document.createEvent("Event");
-      event.initEvent("slideenter", true, true);
-      window.document.dispatchEvent(event);
-    }
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-      fireSlideEnter();
-
-      // dispatch for shiny
-      if (window.jQuery) {
-        if (previousSlide) {
-          window.jQuery(previousSlide).trigger("hidden");
-        }
-        if (currentSlide) {
-          window.jQuery(currentSlide).trigger("shown");
-        }
-      }
-    }
-
-    // hookup for slidy
-    if (window.w3c_slidy) {
-      window.w3c_slidy.add_observer(function (slide_num) {
-        // slide_num starts at position 1
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-      });
-    }
-
-  })();
-</script>
-
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
